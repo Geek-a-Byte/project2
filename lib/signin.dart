@@ -5,43 +5,45 @@ import 'package:flutter_awesome_alert_box/flutter_awesome_alert_box.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newapp/settings.dart';
 
-class SignUp extends StatefulWidget {
-  SignUp({Key key}) : super(key: key);
+class SignIn extends StatefulWidget {
+  SignIn({Key key}) : super(key: key);
 
   @override
-  _SignUpState createState() => _SignUpState();
+  _SignInState createState() => _SignInState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignInState extends State<SignIn> {
   String title = "Sign in";
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
   TextEditingController confirmpasswordcontroller = TextEditingController();
 
-  signup() async {
+  signin() async {
     var response;
-    if (passwordcontroller.text == confirmpasswordcontroller.text) {
-      var data = {
-        "email": emailcontroller.text,
-        "password": passwordcontroller.text
-      };
 
-      response =
-          await http.post(baseURL + "signup.php", body: jsonEncode(data));
-      print(response.body);
-      SuccessAlertBox(
-          context: context, title: "great", messageText: response.body);
+    var data = {
+      "email": emailcontroller.text,
+      "password": passwordcontroller.text
+    };
+
+    response = await http.post(baseURL + "signin.php", body: jsonEncode(data));
+    print(response.body);
+
+    var jsonbody = jsonDecode(response.body);
+    if (jsonbody["email"] == emailcontroller.text &&
+        jsonbody["password"] == passwordcontroller.text) {
+      setValue("isLoggedin", "true");
       Navigator.pushNamed(context, '/dashboard');
-
-      /// Navigator.pushNamed(context, '/dashboard');
-      /*,style: TextStyle(fontSize: 15,color: Colors.black),*/
-
-    } else {
+    } else if (response.body == "10") {
+      print("Invalid username or password");
       WarningAlertBox(
           context: context,
-          title: "wait!",
-          messageText: "password and confirm pasword doesn't match.");
+          title: "Wait!",
+          messageText: "Invalid username or password");
     }
+
+    /// Navigator.pushNamed(context, '/dashboard');
+    /*,style: TextStyle(fontSize: 15,color: Colors.black),*/
   }
 
   @override
@@ -148,7 +150,7 @@ class _SignUpState extends State<SignUp> {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text("Sign Up Form",
+                    Text("LogIn Form",
                         style: GoogleFonts.montserrat(
                             textStyle: TextStyle(
                                 fontSize: 30,
@@ -212,30 +214,6 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: TextFormField(
-                        controller: confirmpasswordcontroller,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          labelText: "Confirm Password : ",
-
-                          hintText: "*********",
-
-                          labelStyle: TextStyle(color: Colors.white),
-
-                          enabledBorder: new UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-
-                          // and:
-
-                          focusedBorder: new UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
@@ -251,7 +229,9 @@ class _SignUpState extends State<SignUp> {
                               ],
                             ),
                             color: Colors.black,
-                            onPressed: signup),
+                            onPressed: () {
+                              SignIn();
+                            }),
 
                         RaisedButton(
                             child: Row(
@@ -271,7 +251,7 @@ class _SignUpState extends State<SignUp> {
                        //title=emailcontroller.text;                     
   
                      });*/
-                              Navigator.pushNamed(context, '/signin');
+                              Navigator.pushNamed(context, '/dashboard');
                             }), //raised button
                       ],
                     ),
