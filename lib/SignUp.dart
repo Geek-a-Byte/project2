@@ -27,7 +27,7 @@ class _SignUpState extends State<SignUp> {
       };
 
       response =
-          await http.post(baseURL + "signup.php", body: jsonEncode(data));
+          await http.post(baseURL + "/signup.php", body: jsonEncode(data));
       print(response.body);
       SuccessAlertBox(
           context: context, title: "great", messageText: response.body);

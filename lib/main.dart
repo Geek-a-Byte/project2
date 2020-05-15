@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/SignUp': (context) => SignUp(),
         '/dashboard': (context) => DashBoard(),
-        '/signin': (context) => SignIn()
+        '/signin': (context) => SignIn(),
       },
       debugShowCheckedModeBanner: false,
     );

@@ -1,8 +1,8 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-///https://mistcomputerclub.000webhostapp.com
+///https://mistcomputerclub.000webhostapp.com/
 ///
-String baseURL = "https://mistcomputerclub.000webhostapp.com";
+String baseURL = "https://mistcomputerclub.000webhostapp.com/";
 
 ///";
 setValue(String key, String value) async {

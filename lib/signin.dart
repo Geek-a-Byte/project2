@@ -32,9 +32,13 @@ class _SignInState extends State<SignIn> {
     var jsonbody = jsonDecode(response.body);
     if (jsonbody["email"] == emailcontroller.text &&
         jsonbody["password"] == passwordcontroller.text) {
+      SuccessAlertBox(
+          context: context,
+          title: "congrats!",
+          messageText: "You are logged in!");
       setValue("isLoggedin", "true");
       Navigator.pushNamed(context, '/dashboard');
-    } else if (response.body == "10") {
+    } else if (response.body == 10) {
       print("Invalid username or password");
       WarningAlertBox(
           context: context,
@@ -229,9 +233,7 @@ class _SignInState extends State<SignIn> {
                               ],
                             ),
                             color: Colors.black,
-                            onPressed: () {
-                              SignIn();
-                            }),
+                            onPressed: () {}),
 
                         RaisedButton(
                             child: Row(
@@ -251,7 +253,7 @@ class _SignInState extends State<SignIn> {
                        //title=emailcontroller.text;                     
   
                      });*/
-                              Navigator.pushNamed(context, '/dashboard');
+                              signin();
                             }), //raised button
                       ],
                     ),
