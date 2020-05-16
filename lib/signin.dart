@@ -13,10 +13,10 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  String title = "Sign in";
+  // TextEditingController confirmpasswordcontroller = TextEditingController();
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
-  TextEditingController confirmpasswordcontroller = TextEditingController();
+  // String title = "Sign in";
 
   signin() async {
     var response;
@@ -26,19 +26,29 @@ class _SignInState extends State<SignIn> {
       "password": passwordcontroller.text
     };
 
+    // !the appdata is not conveyed properly to the web server
+    // !the received data is null somehow
+
+    //response = await http.post(baseURL + "signin.php", body: jsonEncode(data));
     response = await http.post(baseURL + "signin.php", body: jsonEncode(data));
     print(response.body);
 
     var jsonbody = jsonDecode(response.body);
+    print(jsonbody);
+
+    // String jsonsDataString = response.body
+    //     .toString(); // toString of Response's body is assigned to jsonDataString
+    // var jsonbody = jsonDecode(jsonsDataString);
     if (jsonbody["email"] == emailcontroller.text &&
         jsonbody["password"] == passwordcontroller.text) {
-      SuccessAlertBox(
-          context: context,
-          title: "congrats!",
-          messageText: "You are logged in!");
+      // SuccessAlertBox(
+      //     context: context,
+      //     title: "congrats!",
+      //     messageText: "You are logged in!");
+
       setValue("isLoggedin", "true");
       Navigator.pushNamed(context, '/dashboard');
-    } else if (response.body == 10) {
+    } else if (response.body == "10") {
       print("Invalid username or password");
       WarningAlertBox(
           context: context,
@@ -221,6 +231,8 @@ class _SignInState extends State<SignIn> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
+// *sign up button starts
+
                         RaisedButton(
                             child: Row(
                               children: <Widget>[
@@ -235,12 +247,14 @@ class _SignInState extends State<SignIn> {
                             color: Colors.black,
                             onPressed: () {}),
 
+//* signin button start
+
                         RaisedButton(
                             child: Row(
                               children: <Widget>[
                                 Icon(Icons.account_circle, color: Colors.white),
                                 Text(
-                                  title,
+                                  "Sign in",
                                   style: TextStyle(
                                       fontSize: 15, color: Colors.white),
                                 ),
