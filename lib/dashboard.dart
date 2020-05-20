@@ -39,6 +39,8 @@ class _DashBoardState extends State<DashBoard> {
         child: FutureBuilder(
           future: fetchAllMembersData(),
           builder: (BuildContext context, AsyncSnapshot received) {
+            if (!received.hasData) return CircularProgressIndicator();
+
             return ListView.builder(
                 itemCount: received.data.length,
                 itemBuilder: (BuildContext context, int index) {

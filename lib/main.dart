@@ -32,8 +32,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-//how will you complete a new app within the next week
-//you have to though
-//ok try to google as much as you can
-//don't take any help from unless you can't find any solution in the google
-//ok start

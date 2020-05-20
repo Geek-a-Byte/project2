@@ -31,10 +31,10 @@ class _SignInState extends State<SignIn> {
 
     //response = await http.post(baseURL + "signin.php", body: jsonEncode(data));
     response = await http.post(baseURL + "signin.php", body: jsonEncode(data));
-    print(response.body);
+    //print(response.body);
 
     var jsonbody = jsonDecode(response.body);
-    print(jsonbody);
+    //print(jsonbody);
 
     // String jsonsDataString = response.body
     //     .toString(); // toString of Response's body is assigned to jsonDataString
@@ -46,9 +46,13 @@ class _SignInState extends State<SignIn> {
       //     title: "congrats!",
       //     messageText: "You are logged in!");
 
+      print(7);
       setValue("isLoggedin", "true");
+      setValue("email", jsonbody["email"]);
+      setValue("phone", jsonbody["phone"]);
+      print(8);
       Navigator.pushNamed(context, '/dashboard');
-    } else if (response.body == "10") {
+    } else if (jsonbody["success"] == "10") {
       print("Invalid username or password");
       WarningAlertBox(
           context: context,
