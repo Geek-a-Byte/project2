@@ -51,6 +51,9 @@ flutter:
     - assets/abstract2.jpg
     - assets/abstract.jpg
     - assets/watch.jpg
+    - assets/kuchipooo.jpg
+    - assets/gif.gif
+    - assets/loading.gif
   #  - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

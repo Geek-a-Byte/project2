@@ -15,7 +15,7 @@ setValue(String key, String value) async {
 
 getValue(String key) async {
   SharedPreferences storage = await SharedPreferences.getInstance();
-  await storage.getString(key);
+  return await storage.getString(key);
   //int counter = (prefs.getInt('counter') ?? 0) + 1;
   //print('Pressed $counter times.');
   //await prefs.setInt('counter', counter);

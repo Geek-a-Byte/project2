@@ -75,15 +75,13 @@ class _SignUpState extends State<SignUp> {
                 style: TextStyle(fontSize: 30, color: Colors.white),
               ),
               onTap: () {
-                // Update the state of the app.
-                // ...
+                //setValue("isLoggedin", "false");
               },
             ),
             ListTile(
-              title: Text('Item 2'),
+              title: Text('logout'),
               onTap: () {
-                // Update the state of the app.
-                // ...
+                setValue("isLoggedin", "false");
               },
             ),
           ],
@@ -91,7 +89,7 @@ class _SignUpState extends State<SignUp> {
       ),
       body: Container(
         decoration: BoxDecoration(
-            /*gradient: LinearGradient(
+          /*gradient: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomCenter,
           colors:[ 
@@ -102,8 +100,12 @@ class _SignUpState extends State<SignUp> {
           ]
     )*/
 
-            image: DecorationImage(
-                image: AssetImage('assets/abstract.jpg'), fit: BoxFit.cover)),
+          image: DecorationImage(
+              image: AssetImage('assets/kuchipooo.jpg'),
+              colorFilter: new ColorFilter.mode(
+                  Colors.black.withOpacity(0.000005), BlendMode.softLight),
+              fit: BoxFit.cover),
+        ),
         child: Center(
           child: Card(
             shape: RoundedRectangleBorder(
@@ -135,7 +137,7 @@ class _SignUpState extends State<SignUp> {
 
             //color: Color(hashCode),
 
-            //color: Color.fromRGBO(100, 10, 50, 5.0),
+            //color: Color.fromRGBO(0, 0, 40, 0.35),
 
             //color : const Color(0XFF880E4F), //0xff hocche opacity
 
@@ -160,7 +162,7 @@ class _SignUpState extends State<SignUp> {
                       padding: const EdgeInsets.all(10.0),
                       child: TextFormField(
                         style: TextStyle(
-                          color: Colors.redAccent[100],
+                          color: Colors.white70,
                         ),
                         controller: emailcontroller,
                         decoration: InputDecoration(
@@ -171,7 +173,7 @@ class _SignUpState extends State<SignUp> {
 
                           hintText: "yourEmailId@gmail.com",
 
-                          hintStyle: TextStyle(color: Colors.blueGrey),
+                          hintStyle: TextStyle(color: Colors.pink[50]),
 
                           enabledBorder: new UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.black),
@@ -184,8 +186,8 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ),
                         cursorColor: Colors.black,
-                        cursorWidth: 7.000000,
-                        cursorRadius: Radius.elliptical(10, 15),
+                        //cursorWidth: 7.000000,
+                        //cursorRadius: Radius.elliptical(10, 15),
                       ),
                     ),
                     Padding(
@@ -198,7 +200,7 @@ class _SignUpState extends State<SignUp> {
 
                           hintText: "*********",
 
-                          labelStyle: TextStyle(color: Colors.white),
+                          labelStyle: TextStyle(color: Colors.pink[50]),
 
                           enabledBorder: new UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.black),
@@ -210,6 +212,7 @@ class _SignUpState extends State<SignUp> {
                             borderSide: BorderSide(color: Colors.white),
                           ),
                         ),
+                        cursorColor: Colors.black,
                       ),
                     ),
                     Padding(
@@ -222,7 +225,7 @@ class _SignUpState extends State<SignUp> {
 
                           hintText: "*********",
 
-                          labelStyle: TextStyle(color: Colors.white),
+                          labelStyle: TextStyle(color: Colors.pink[50]),
 
                           enabledBorder: new UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.black),
@@ -234,6 +237,7 @@ class _SignUpState extends State<SignUp> {
                             borderSide: BorderSide(color: Colors.white),
                           ),
                         ),
+                        cursorColor: Colors.black,
                       ),
                     ),
                     Row(

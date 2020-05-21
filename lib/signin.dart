@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_awesome_alert_box/flutter_awesome_alert_box.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:newapp/SignUp.dart';
 import 'package:newapp/settings.dart';
 
 class SignIn extends StatefulWidget {
@@ -26,9 +27,6 @@ class _SignInState extends State<SignIn> {
       "password": passwordcontroller.text
     };
 
-    // !the appdata is not conveyed properly to the web server
-    // !the received data is null somehow
-
     //response = await http.post(baseURL + "signin.php", body: jsonEncode(data));
     response = await http.post(baseURL + "signin.php", body: jsonEncode(data));
     //print(response.body);
@@ -41,16 +39,16 @@ class _SignInState extends State<SignIn> {
     // var jsonbody = jsonDecode(jsonsDataString);
     if (jsonbody["email"] == emailcontroller.text &&
         jsonbody["password"] == passwordcontroller.text) {
-      // SuccessAlertBox(
-      //     context: context,
-      //     title: "congrats!",
-      //     messageText: "You are logged in!");
+      SuccessAlertBox(
+          context: context,
+          title: "congrats!",
+          messageText: "You are logged in!");
 
-      print(7);
+      //print(7);
       setValue("isLoggedin", "true");
       setValue("email", jsonbody["email"]);
       setValue("phone", jsonbody["phone"]);
-      print(8);
+      //print(8);
       Navigator.pushNamed(context, '/dashboard');
     } else if (jsonbody["success"] == "10") {
       print("Invalid username or password");
@@ -95,15 +93,13 @@ class _SignInState extends State<SignIn> {
                 style: TextStyle(fontSize: 30, color: Colors.white),
               ),
               onTap: () {
-                // Update the state of the app.
-                // ...
+                //setValue("isLoggedin", "false");
               },
             ),
             ListTile(
-              title: Text('Item 2'),
+              title: Text('LogOut'),
               onTap: () {
-                // Update the state of the app.
-                // ...
+                setValue("isLoggedin", "false");
               },
             ),
           ],
@@ -123,7 +119,7 @@ class _SignInState extends State<SignIn> {
     )*/
 
             image: DecorationImage(
-                image: AssetImage('assets/abstract.jpg'), fit: BoxFit.cover)),
+                image: AssetImage('assets/kuchipooo.jpg'), fit: BoxFit.cover)),
         child: Center(
           child: Card(
             shape: RoundedRectangleBorder(
@@ -180,7 +176,7 @@ class _SignInState extends State<SignIn> {
                       padding: const EdgeInsets.all(10.0),
                       child: TextFormField(
                         style: TextStyle(
-                          color: Colors.redAccent[100],
+                          color: Colors.white70,
                         ),
                         controller: emailcontroller,
                         decoration: InputDecoration(
@@ -191,7 +187,7 @@ class _SignInState extends State<SignIn> {
 
                           hintText: "yourEmailId@gmail.com",
 
-                          hintStyle: TextStyle(color: Colors.blueGrey),
+                          hintStyle: TextStyle(color: Colors.pink[50]),
 
                           enabledBorder: new UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.black),
@@ -204,8 +200,8 @@ class _SignInState extends State<SignIn> {
                           ),
                         ),
                         cursorColor: Colors.black,
-                        cursorWidth: 7.000000,
-                        cursorRadius: Radius.elliptical(10, 15),
+                        //cursorWidth: 7.000000,
+                        //cursorRadius: Radius.elliptical(10, 15),
                       ),
                     ),
                     Padding(
@@ -218,7 +214,7 @@ class _SignInState extends State<SignIn> {
 
                           hintText: "*********",
 
-                          labelStyle: TextStyle(color: Colors.white),
+                          labelStyle: TextStyle(color: Colors.pink[50]),
 
                           enabledBorder: new UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.black),
@@ -230,6 +226,7 @@ class _SignInState extends State<SignIn> {
                             borderSide: BorderSide(color: Colors.white),
                           ),
                         ),
+                        cursorColor: Colors.black,
                       ),
                     ),
                     Row(
@@ -237,19 +234,21 @@ class _SignInState extends State<SignIn> {
                       children: <Widget>[
 // *sign up button starts
 
-                        RaisedButton(
-                            child: Row(
-                              children: <Widget>[
-                                Icon(Icons.person_add, color: Colors.white),
-                                Text(
-                                  "Sign up",
-                                  style: TextStyle(
-                                      fontSize: 15, color: Colors.white),
-                                ),
-                              ],
-                            ),
-                            color: Colors.black,
-                            onPressed: () {}),
+                        // RaisedButton(
+                        //     child: Row(
+                        //       children: <Widget>[
+                        //         Icon(Icons.person_add, color: Colors.white),
+                        //         Text(
+                        //           "Sign up",
+                        //           style: TextStyle(
+                        //               fontSize: 15, color: Colors.white),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //     color: Colors.black,
+                        //     onPressed: () {
+                        //       Navigator.pushNamed(context, '/SignUp');
+                        //     }),
 
 //* signin button start
 
